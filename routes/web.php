@@ -20,3 +20,5 @@ Route::post('/form', 'SiteController@insert');
 Route::get('/generos', 'GeneroController@index');
 Route::get('/generos/create', 'GeneroController@create');
 Route::post('/generos/store', 'GeneroController@store');
+
+Route::resource('/atores', 'AtorController');
