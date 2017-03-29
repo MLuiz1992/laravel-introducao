@@ -14,8 +14,12 @@ class GeneroController extends Controller
      */
     public function index()
     {
-         $generos = Genero::all();
+        //buscar todos os dados
+        $generos = Genero::all();
+
+        //repassar para a view
         return view('generos.index', compact('generos'));
+
     }
 
     /**
@@ -36,10 +40,17 @@ class GeneroController extends Controller
      */
     public function store(Request $request)
     {
+        //cria um novo genero
         $genero = new Genero();
+        
+        //coloca os dados dentro do genero
         $genero->nome = $request->nome;
-        $genero->save();
 
+        //salva o genero
+        $genero->save();
+        
+
+        //retorna para um página qualquer
         return redirect('/generos');
     }
 

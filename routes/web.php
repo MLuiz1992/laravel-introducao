@@ -11,14 +11,14 @@
 |
 */
 
-Route::get('/', 'SiteController@inicio');
+Route::get('/', 'SiteController@inicio')->name('principal');
 
 
 Route::get('/form', 'SiteController@form');
 Route::post('/form', 'SiteController@insert');
 
-Route::get('/generos', 'GeneroController@index');
-Route::get('/generos/create', 'GeneroController@create');
-Route::post('/generos/store', 'GeneroController@store');
-
 Route::resource('/atores', 'AtorController');
+
+
+Route::resource('generos', 'GeneroController');
+
