@@ -17,7 +17,8 @@ Route::get('/', 'SiteController@inicio')->name('principal');
 Route::get('/form', 'SiteController@form');
 Route::post('/form', 'SiteController@insert');
 
-Route::resource('/atores', 'AtorController');
+Route::resource('atores', 'AtorController');
+Route::resource('filmes', 'FilmeController');
 
 
 Route::resource('generos', 'GeneroController');

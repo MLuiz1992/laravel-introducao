@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Filme;
 use App\Genero;
 use Illuminate\Http\Request;
 
-class GeneroController extends Controller
+class FilmeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,15 +15,10 @@ class GeneroController extends Controller
      */
     public function index()
     {
+        
+        $filmes = Filme::with('genero')->get();
 
-        return $genero = Genero::with('filmes')->get();
-
-        //buscar todos os dados
-        $generos = Genero::all();
-
-        //repassar para a view
-        return view('generos.index', compact('generos'));
-
+        return view('filmes.index', compact('filmes'));
     }
 
     /**
@@ -32,7 +28,9 @@ class GeneroController extends Controller
      */
     public function create()
     {
-        return view('generos.create');
+        $generos = Genero::all();
+        return view('filmes.create', compact('generos'));
+        
     }
 
     /**
@@ -43,27 +41,26 @@ class GeneroController extends Controller
      */
     public function store(Request $request)
     {
-        //cria um novo genero
-        $genero = new Genero();
-        
-        //coloca os dados dentro do genero
-        $genero->nome = $request->nome;
 
-        //salva o genero
-        $genero->save();
-        
+       
 
-        //retorna para um página qualquer
-        return redirect('/generos');
+        $filme = new Filme();
+        $filme->titulo = $request->titulo;
+        $filme->ano = $request->ano;
+        $filme->genero_id = $request->genero;
+
+        $filme->save();
+
+        return redirect('filmes');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Genero  $genero
+     * @param  \App\Filme  $filme
      * @return \Illuminate\Http\Response
      */
-    public function show(Genero $genero)
+    public function show(Filme $filme)
     {
         //
     }
@@ -71,10 +68,10 @@ class GeneroController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Genero  $genero
+     * @param  \App\Filme  $filme
      * @return \Illuminate\Http\Response
      */
-    public function edit(Genero $genero)
+    public function edit(Filme $filme)
     {
         //
     }
@@ -83,10 +80,10 @@ class GeneroController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Genero  $genero
+     * @param  \App\Filme  $filme
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Genero $genero)
+    public function update(Request $request, Filme $filme)
     {
         //
     }
@@ -94,10 +91,10 @@ class GeneroController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Genero  $genero
+     * @param  \App\Filme  $filme
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Genero $genero)
+    public function destroy(Filme $filme)
     {
         //
     }
